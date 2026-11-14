@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="pt-BR" class="{{ 'alto-contraste' if contrast else '' }}">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Registrar movimentação</title><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
+<body><main class="container">
+  <header><a class="marca" href="/">Novo Caminho</a><a class="acessibilidade" href="/movimentacao?alto_contraste={{ 0 if contrast else 1 }}">{{ 'Contraste padrão' if contrast else 'Ativar alto contraste' }}</a></header>
+  <h1>Registrar movimentação</h1><p class="subtitulo">Informe os dados da entrada ou saída do estoque.</p>
+  {% if error %}<p class="mensagem erro" role="alert">Não foi possível registrar: {{ error }}.</p>{% endif %}
+  {% if success %}<p class="mensagem sucesso" role="status">{{ success }}</p>{% endif %}
+  <form method="post">
+    <label for="produto">Produto *</label>
+    <select id="produto" name="produto" required>{% for name in products %}<option>{{ name }}</option>{% endfor %}</select>
+    <label for="operacao">Tipo de movimentação *</label>
+    <select id="operacao" name="operacao" required><option value="entrada">Entrada</option><option value="saida">Saída</option></select>
+    <label for="quantidade">Quantidade *</label><input id="quantidade" name="quantidade" type="number" min="1" required>
+    <button type="submit">Salvar movimentação</button><a class="link-secundario" href="/estoque">Consultar estoque</a>
+  </form>
+</main></body>
+</html>

@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="pt-BR" class="{{ 'alto-contraste' if contrast else '' }}">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Consulta de estoque</title><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
+<body><main class="container">
+  <header><a class="marca" href="/">Novo Caminho</a><a class="acessibilidade" href="/estoque?alto_contraste={{ 0 if contrast else 1 }}">{{ 'Contraste padrão' if contrast else 'Ativar alto contraste' }}</a></header>
+  <h1>Consulta de estoque</h1><p class="subtitulo">Produtos disponíveis e situações que exigem atenção.</p>
+  <table><caption class="sr-only">Produtos e alertas do estoque</caption><thead><tr><th>Produto</th><th>Quantidade</th><th>Validade</th><th>Situação</th></tr></thead><tbody>
+  {% for name, item in products.items() %}<tr><td>{{ name }}</td><td>{{ item.quantity }}</td><td>{{ item.validity }}</td><td>{% if item.quantity <= item.minimum %}<span class="alerta">⚠ Estoque baixo</span>{% else %}<span class="disponivel">Disponível</span>{% endif %}</td></tr>{% endfor %}
+  </tbody></table>
+  <a class="botao" href="/movimentacao">Nova movimentação</a>
+</main></body>
+</html>
