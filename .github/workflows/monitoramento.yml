@@ -1,0 +1,17 @@
+name: Monitoramento de disponibilidade
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+
+jobs:
+  health-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verificar aplicação publicada
+        env:
+          APP_URL: ${{ secrets.APP_URL }}
+        run: |
+          test -n "$APP_URL"
+          curl --fail --silent --show-error --max-time 20 "$APP_URL/health"

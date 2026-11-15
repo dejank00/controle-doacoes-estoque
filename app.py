@@ -16,6 +16,10 @@ def index():
     contrast = request.args.get("alto_contraste") == "1"
     return render_template("index.html", contrast=contrast)
 
+@app.get("/health")
+def health():
+    return {"status": "ok"}, 200
+
 @app.route("/movimentacao", methods=["GET", "POST"])
 def movimentacao():
     contrast = request.args.get("alto_contraste") == "1"
