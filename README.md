@@ -11,3 +11,7 @@ flask --app app run
 ```
 
 O MVP utiliza Flask e terá como núcleo o cadastro de produtos, movimentações de entrada e saída e consulta de estoque.
+
+## Revisao tecnica
+
+As regras de movimentacao foram isoladas em `services/stock.py`, permitindo testes unitarios independentes da interface. Entradas invalidas e saidas superiores ao saldo sao rejeitadas antes da persistencia.

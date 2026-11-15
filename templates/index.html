@@ -1,5 +1,13 @@
 <!doctype html>
-<html lang="pt-BR">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Novo Caminho</title></head>
-<body><main><h1>Controle de Doações e Estoque</h1><p>MVP da Associação Comunitária Novo Caminho.</p><nav aria-label="Acoes principais"><a href="#movimentacao">Registrar movimentação</a> | <a href="#estoque">Consultar estoque</a></nav></main></body>
+<html lang="pt-BR" class="{{ 'alto-contraste' if contrast else '' }}">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Novo Caminho</title><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
+<body><main class="container">
+  <header><span class="marca">Novo Caminho</span><a class="acessibilidade" href="/?alto_contraste={{ 0 if contrast else 1 }}">{{ 'Contraste padrão' if contrast else 'Ativar alto contraste' }}</a></header>
+  <h1>Controle de Doações e Estoque</h1><p class="subtitulo">MVP da Associação Comunitária Novo Caminho.</p>
+  <section class="cards" aria-label="Ações principais">
+    <a class="card" href="/movimentacao"><strong>Registrar movimentação</strong><span>Entrada ou saída de produto</span></a>
+    <a class="card" href="/estoque"><strong>Consultar estoque</strong><span>Quantidades, validade e alertas</span></a>
+  </section>
+  <p class="ajuda">Use Tab para navegar e Enter para selecionar.</p>
+</main></body>
 </html>
